@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Xamarin.Forms.Controls.GalleryPages.SwipeViewGalleries.SwipeViewMarginGallery"
+    Title="SwipeView Margin Gallery">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label
+                Text="SwipeView Content Margin"/>
+            <Slider
+                x:Name="MarginSlider"
+                MinimumTrackColor="LightGray"
+                Minimum="0"
+                MaximumTrackColor="Gray"
+                Maximum="48"
+                ThumbColor="DarkGray"
+                Value="12"/>
+            <Label
+                Text="SwipeView Content Padding"/>
+            <Slider
+                x:Name="PaddingSlider"
+                MinimumTrackColor="LightGray"
+                Minimum="0"
+                MaximumTrackColor="Gray"
+                Maximum="48"
+                ThumbColor="DarkGray"
+                Value="12"/>
+            <SwipeView>
+                <SwipeView.LeftItems>
+                    <SwipeItems>
+                        <SwipeItem
+                            BackgroundColor="Green"
+                            Text="Favourite"/>
+                    </SwipeItems>
+                </SwipeView.LeftItems>
+                <SwipeView.RightItems>
+                    <SwipeItems>
+                        <SwipeItem
+                            BackgroundColor="Red"
+                            Text="Delete"/>
+                    </SwipeItems>
+                </SwipeView.RightItems>
+                <SwipeView.Content>
+                    <Grid
+                        BackgroundColor="LightGray"
+                        HeightRequest="100"
+                        Padding="{Binding Source={x:Reference PaddingSlider}, Path=Value}"
+                        Margin="{Binding Source={x:Reference MarginSlider}, Path=Value}">
+                        <Label
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            Text="SwipeView Content"/>
+                    </Grid>
+                </SwipeView.Content>
+            </SwipeView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

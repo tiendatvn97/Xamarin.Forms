@@ -537,8 +537,9 @@ namespace Xamarin.Forms.Platform.iOS
 		{
 			var swipeItems = new List<UIView>();
 
-			foreach (var view in _actionView.Subviews)
-				swipeItems.Add(view);
+			if (_actionView != null)
+				foreach (var view in _actionView.Subviews)
+					swipeItems.Add(view);
 
 			return swipeItems;
 		}

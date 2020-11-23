@@ -7,6 +7,11 @@
     <ContentPage.Content>
         <StackLayout>
             <Label
+                Padding="12"
+                BackgroundColor="Black"
+                TextColor="White"
+                Text="Modify the SwipeView Margin and Padding values, and verify when opening that the positioning of the SwipeItems is correct."/>
+            <Label
                 Text="SwipeView Content Margin"/>
             <Slider
                 x:Name="MarginSlider"
@@ -26,7 +31,8 @@
                 Maximum="48"
                 ThumbColor="DarkGray"
                 Value="12"/>
-            <SwipeView>
+            <SwipeView
+                BackgroundColor="LightGray">
                 <SwipeView.LeftItems>
                     <SwipeItems>
                         <SwipeItem
@@ -43,14 +49,43 @@
                 </SwipeView.RightItems>
                 <SwipeView.Content>
                     <Grid
-                        BackgroundColor="LightGray"
+                        BackgroundColor="Gray"
                         HeightRequest="100"
                         Padding="{Binding Source={x:Reference PaddingSlider}, Path=Value}"
                         Margin="{Binding Source={x:Reference MarginSlider}, Path=Value}">
                         <Label
                             HorizontalOptions="Center"
                             VerticalOptions="Center"
-                            Text="SwipeView Content"/>
+                            Text="Horizontal SwipeItems"/>
+                    </Grid>
+                </SwipeView.Content>
+            </SwipeView>
+            <SwipeView
+                BackgroundColor="LightGray">
+                <SwipeView.TopItems>
+                    <SwipeItems>
+                        <SwipeItem
+                            BackgroundColor="Green"
+                            Text="Favourite"/>
+                    </SwipeItems>
+                </SwipeView.TopItems>
+                <SwipeView.BottomItems>
+                    <SwipeItems>
+                        <SwipeItem
+                            BackgroundColor="Red"
+                            Text="Delete"/>
+                    </SwipeItems>
+                </SwipeView.BottomItems>
+                <SwipeView.Content>
+                    <Grid
+                        BackgroundColor="Gray"
+                        HeightRequest="100"
+                        Padding="{Binding Source={x:Reference PaddingSlider}, Path=Value}"
+                        Margin="{Binding Source={x:Reference MarginSlider}, Path=Value}">
+                        <Label
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            Text="Vertical SwipeItems"/>
                     </Grid>
                 </SwipeView.Content>
             </SwipeView>

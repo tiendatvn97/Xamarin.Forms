@@ -167,6 +167,9 @@ namespace Xamarin.Forms.Platform.Android
 				{
 					Element.OpenRequested -= OnOpenRequested;
 					Element.CloseRequested -= OnCloseRequested;
+
+					if (Element.Content != null)
+						Element.Content.PropertyChanged -= OnContentPropertyChanged;
 				}
 
 				if (_scrollParent != null)
@@ -297,10 +300,26 @@ namespace Xamarin.Forms.Platform.Android
 			if (Element.Content == null)
 				_contentView = CreateEmptyContent();
 			else
+			{
+				Element.Content.PropertyChanged += OnContentPropertyChanged;
+
 				_contentView = CreateContent();
+			}
 
 			AddView(_contentView);
 		}
+
+		void OnContentPropertyChanged(object sender, PropertyChangedEventArgs e)
+		{
+			if (e.IsOneOf(
+				VisualElement.HeightProperty,
+				VisualElement.WidthProperty,
+				View.MarginProperty,
+				Xamarin.Forms.Layout.PaddingProperty))
+				UpdateContentLayout();
+		}
+
+		void UpdateContentLayout() => ResetSwipe();
 
 		AView CreateEmptyContent()
 		{

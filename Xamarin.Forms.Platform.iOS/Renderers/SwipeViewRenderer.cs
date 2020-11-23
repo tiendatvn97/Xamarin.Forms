@@ -340,13 +340,8 @@ namespace Xamarin.Forms.Platform.iOS
 				UpdateContentLayout();
 		}
 
-		void UpdateContentLayout()
-		{
-			_originalBounds = _contentView.Frame;
-
-			ResetSwipe();
-		}
-
+		void UpdateContentLayout() => ResetSwipe();
+		
 		void HandleTap()
 		{
 			if (_tapGestureRecognizer == null)
@@ -515,12 +510,12 @@ namespace Xamarin.Forms.Platform.iOS
 					switch (_swipeDirection)
 					{
 						case SwipeDirection.Left:
-							child.Frame = new CGRect(_contentView.Frame.Width - (swipeItemWidth + previousWidth), _originalBounds.Y, i + 1 * swipeItemWidth, swipeItemHeight);
+							child.Frame = new CGRect(_originalBounds.X + _contentView.Frame.Width - (swipeItemWidth + previousWidth), _originalBounds.Y, i + 1 * swipeItemWidth, swipeItemHeight);
 							break;
 						case SwipeDirection.Right:
 						case SwipeDirection.Up:
 						case SwipeDirection.Down:
-							child.Frame = new CGRect(previousWidth, _originalBounds.Y, i + 1 * swipeItemWidth, swipeItemHeight);
+							child.Frame = new CGRect(_originalBounds.X + previousWidth, _originalBounds.Y, i + 1 * swipeItemWidth, swipeItemHeight);
 							break;
 					}
 
